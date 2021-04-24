@@ -11,15 +11,14 @@ CITY_DATA = { 'Chicago': 'chicago.csv',
 def get_filters():
     """
     Asks user to specify a city, month, and day to analyze.
-
     Returns:
         (str) city - name of the city to analyze
         (str) month - name of the month to filter by, or "all" to apply no month filter
         (str) day - name of the day of week to filter by, or "all" to apply no day filter
     """
     print('Hello! Let\'s explore some US bikeshare data!')
+    
     # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
-
     city = input('Would you like to see data for Chicago, New York, or Washington?\n').title()
     cities =['Chicago', 'New York', 'Washington']
 
@@ -28,6 +27,7 @@ def get_filters():
     
     print('Looks like you want to hear about {}! If this is not true, please restart the program.\n'.format(city))
 
+    # get user input regarding filter options in general
     time_filter = input('Would you like to filter the data by month, day, or not at all? Type "none" for no time filter.\n')
     time_filters = ['Month', 'Day', 'None']
 
@@ -36,19 +36,24 @@ def get_filters():
 
     print('We will make sure to filter by {}!\n'.format(time_filter.title()))
 
+    # get user input regarding filter option in detail (specific month or day)
     if time_filter.title() == 'Month':  
-            # get user input for month (all, january, february, ... , june)
+
+        # get user input for month (all, january, february, ... , june)
         month = input('Which month? January, February, March, April, May, or June? Please type out the full month name or "all" for all month.\n').title()
         months = ['None', 'January', 'February', 'March', 'April', 'May', 'June']
 
         while month.title() not in months:
             month = input('Please enter one of the following month as filter: January, February, March, April, May, June, or All\n')
         
+        # print filter
         print('We will make sure to filter by {}!\n'.format(month))
 
+        # define non-filter variable
         day = 'None'
     
     elif time_filter.title() == 'Day':
+
         # get user input for day of week (all, monday, tuesday, ... sunday)
         day = input('Which day? Please type the day as full name of the day (e.g. Sunday)\n')
         days = ['None', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
@@ -56,8 +61,10 @@ def get_filters():
         while day.title() not in days:
             day = input('Please type the day as full name of the day (e.g. Sunday)\n')
         
+        # print filter
         print('We will make sure to filter by {}!\n'.format(day))
 
+        # define non-filter variable
         month = 'None'
 
     else:
@@ -66,7 +73,6 @@ def get_filters():
         month = 'None'
         day = 'None'
 
-
     print('-'*40)
     return city, month, day
 
@@ -74,7 +80,6 @@ def get_filters():
 def load_data(city, month, day):
     """
     Loads data for the specified city and filters by month and day if applicable.
-
     Args:
         (str) city - name of the city to analyze
         (str) month - name of the month to filter by, or "all" to apply no month filter
@@ -169,12 +174,12 @@ def trip_duration_stats(df):
     start_time = time.time()
 
     # display total travel time
-    total_tt = df['Trip Duration'].sum()
-    print('The total travel time is ', total_tt)
+    total_traveltime = df['Trip Duration'].sum()
+    print('The total travel time is ', total_traveltime)
 
     # display mean travel time
-    average_tt = df['Trip Duration'].mean()
-    print('The average travel time is ', average_tt)
+    average_totaltraveltime = df['Trip Duration'].mean()
+    print('The average travel time is ', average_traveltime)
 
 
     print("\nThis took %s seconds." % (time.time() - start_time))
@@ -215,12 +220,10 @@ def main():
     while True:
         city, month, day = get_filters()
         df = load_data(city, month, day)
-
         time_stats(df)
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df)
-
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
             break

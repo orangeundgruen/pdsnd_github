@@ -10,7 +10,10 @@ UDACITY Project Git
 The script is written to explore bikeshare data in US. User input is requested, data are filtered and analyses are run automatically.
 
 ### Files used
-Include the files used
+chicago.csv
+washington.csv
+new_york_city.csv
+bikesahre_2.py
 
 ### Credits
-It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
+There are no credits to refer to.

@@ -4,10 +4,10 @@
 2021-04-24
 
 ### Project Title
-UDACITY Project 3
+UDACITY Project Git
 
 ### Description
-Describe what your project is about and what it does
+The script is written to explore bikeshare data in US. User input is requested, data are filtered and analyses are run automatically.
 
 ### Files used
 Include the files used
